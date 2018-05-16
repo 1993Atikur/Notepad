@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:divider="@drawable/verticalseperator"
+    android:showDividers="middle"
+    android:background="@android:color/holo_blue_light"
+    >
+
+    <Button
+        android:id="@+id/undo"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:background="@android:color/transparent"
+        android:fontFamily="sans-serif-smallcaps"
+        android:textSize="15dp"
+        android:text="Undo"
+        android:textColor="@android:color/holo_red_dark" />
+
+    <Button
+        android:id="@+id/redo"
+        android:background="@android:color/transparent"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:textColor="@android:color/holo_red_dark"
+        android:fontFamily="sans-serif-smallcaps"
+        android:textSize="15dp"
+        android:text="Redo" />
+
+
+    <Button
+        android:id="@+id/copy"
+        android:fontFamily="sans-serif-smallcaps"
+        android:textSize="15dp"
+        android:background="@android:color/transparent"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:textColor="@android:color/holo_red_dark"
+        android:text="Copy" />
+
+    <Button
+        android:background="@android:color/transparent"
+        android:id="@+id/cut"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:fontFamily="sans-serif-smallcaps"
+        android:textSize="15dp"
+        android:textColor="@android:color/holo_red_dark"
+        android:text="Cut" />
+    <Button
+        android:background="@android:color/transparent"
+        android:id="@+id/paste"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:fontFamily="sans-serif-smallcaps"
+        android:textSize="15dp"
+        android:textColor="@android:color/holo_red_dark"
+        android:text="Paste" />
+    <Button
+        android:background="@android:color/transparent"
+        android:id="@+id/selectall"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:fontFamily="sans-serif-smallcaps"
+        android:textSize="15dp"
+        android:textColor="@android:color/holo_red_dark"
+        android:text="Select All" />
+</LinearLayout>
