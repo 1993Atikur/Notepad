@@ -5,11 +5,13 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
@@ -34,9 +36,11 @@ import butterknife.OnClick;
 /**
  * Created by pallob on 4/19/18.
  */
-
+import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
+import  static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 public class FileBrowser extends Activity {
     String printabletext="";
+    boolean st;
     int count = 0;
     @BindView(R.id.filehome)
     Button filehome;
@@ -141,20 +145,37 @@ public class FileBrowser extends Activity {
 
             case R.id.filesave:
 
-                FileName = filename.getText().toString()+type;
-                if (count == 0) {
-                    SaverAsync async = new SaverAsync(file, FileName);
-                    async.execute();
+                if(type=="ALL" ){
+                    FileName = filename.getText().toString();
+                    if (FileName.contains(".")){
+                        st=true;
+                    }
+                    else {
+                        st=false;
+                    }
+                }else {
+                    FileName=filename.getText().toString()+type;
 
-                } else {
-
-                    ob = fileobject.get(count);
-                    test = new File(ob.getAbsolutePath(), FileName);
-                    SaverAsync async = new SaverAsync(test, FileName);
-                    async.execute();
                 }
-                Toast.makeText(this, "Save Successfully", Toast.LENGTH_SHORT).show();
-                finish();
+                if(st | FileName.contains(".txt")){
+                    if (count == 0) {
+                        SaverAsync async = new SaverAsync(file, FileName);
+                        async.execute();
+
+                    } else {
+
+                        ob = fileobject.get(count);
+                        test = new File(ob.getAbsolutePath(), FileName);
+                        SaverAsync async = new SaverAsync(test, FileName);
+                        async.execute();
+                    }
+                    Toast.makeText(this, "Save Successfully", Toast.LENGTH_SHORT).show();
+                    finish();
+                }else {
+                    Toast.makeText(this, "Add Extension", Toast.LENGTH_SHORT).show();
+                }
+
+
 
 
                 break;
@@ -382,6 +403,9 @@ public class FileBrowser extends Activity {
 
 
     }
+
+
+
 
     @Override
     public void onBackPressed() {

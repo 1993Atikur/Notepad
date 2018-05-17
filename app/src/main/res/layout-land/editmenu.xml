@@ -9,27 +9,6 @@
     >
 
     <Button
-        android:id="@+id/undo"
-        android:layout_width="wrap_content"
-        android:layout_height="35dp"
-        android:background="@android:color/transparent"
-        android:fontFamily="sans-serif-smallcaps"
-        android:textSize="15dp"
-        android:text="Undo"
-        android:textColor="@android:color/holo_red_dark" />
-
-    <Button
-        android:id="@+id/redo"
-        android:background="@android:color/transparent"
-        android:layout_width="wrap_content"
-        android:layout_height="35dp"
-        android:textColor="@android:color/holo_red_dark"
-        android:fontFamily="sans-serif-smallcaps"
-        android:textSize="15dp"
-        android:text="Redo" />
-
-
-    <Button
         android:id="@+id/copy"
         android:fontFamily="sans-serif-smallcaps"
         android:textSize="15dp"

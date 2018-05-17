@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.method.ScrollingMovementMethod;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -30,6 +31,7 @@ public class ReadMode extends Activity {
         ButterKnife.bind(this);
         intent = getIntent();
         Display = intent.getStringExtra("Display");
+        textView.setMovementMethod(new ScrollingMovementMethod());
         textView.setText(Display);
 
     }

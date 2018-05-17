@@ -1,11 +1,15 @@
 package pallob.loop.com.notepad;
 
 import android.app.Activity;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
 import android.text.InputType;
+import android.text.TextWatcher;
 import android.view.ActionMode;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -24,9 +28,10 @@ import android.widget.Toast;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.FileOutputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -34,7 +39,9 @@ import butterknife.OnClick;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     PopupWindow window = null, window1 = null, window2 = null, window3 = null;
-    String FilePath;
+    int counter=0;
+
+    String FilePath=" ",ExtractedString;
     @BindView(R.id.B1)
     Button B1;
     @BindView(R.id.B2)
@@ -47,6 +54,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     LinearLayout linearLayout;
     @BindView(R.id.editText)
     EditText editText;
+    ClipboardManager clipboardManager;
+    private ClipData myclip;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +64,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         hideKeyboard(this);
+        clipboardManager=(ClipboardManager)getSystemService(CLIPBOARD_SERVICE);
+
+
+
+
 
         editText.setCustomSelectionActionModeCallback(new ActionMode.Callback() {
             @Override
@@ -182,10 +197,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         View popup = inflater.inflate(R.layout.editmenu, null);
         window1 = new PopupWindow(popup, LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         window1.showAsDropDown(B2, 2, 2);
-        undo=popup.findViewById(R.id.undo);
-        undo.setOnClickListener(MainActivity.this);
-        redo=popup.findViewById(R.id.redo);
-        redo.setOnClickListener(MainActivity.this);
         copy=popup.findViewById(R.id.copy);
         copy.setOnClickListener(MainActivity.this);
         cut=popup.findViewById(R.id.cut);
@@ -246,30 +257,38 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 window=null;
                 break;
             case R.id.save:
+                if(FilePath==null | FilePath==" "){
+                    SaveAs();
+
+                }else {
+                    Toast.makeText(this, FilePath, Toast.LENGTH_SHORT).show();
+                    Save(FilePath);
+
+                }
+
                 window.dismiss();
                 window=null;
                 break;
             case R.id.save_as:
-                Intent intent1=new Intent(MainActivity.this,FileBrowser.class);
-                intent1.putExtra("text",editText.getText().toString());
-                startActivity(intent1);
+               SaveAs();
                 window.dismiss();
                 window=null;
                 break;
-            case R.id.undo:
-                Toast.makeText(this, "Clear", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.redo:
-                Toast.makeText(this, "Clear", Toast.LENGTH_SHORT).show();
-                break;
+
             case R.id.copy:
-                Toast.makeText(this, "Clear", Toast.LENGTH_SHORT).show();
+               editOption(1);
+               window1.dismiss();
+               window1=null;
                 break;
             case R.id.cut:
-                Toast.makeText(this, "Clear", Toast.LENGTH_SHORT).show();
+                editOption(2);
+                window1.dismiss();
+                window1=null;
                 break;
             case R.id.paste:
-                Toast.makeText(this, "Clear", Toast.LENGTH_SHORT).show();
+               editOption(3);
+                window1.dismiss();
+                window1=null;
                 break;
             case R.id.selectall:
                 editText.selectAll();
@@ -277,13 +296,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 window1=null;
                 break;
             case R.id.find:
-                Toast.makeText(this, "Clear", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Under Process", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.replace:
-                Toast.makeText(this, "Clear", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Under Process", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.gotoline:
-                Toast.makeText(this, "Clear", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Under Process", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.readmode:
                Intent intent=new Intent(MainActivity.this,ReadMode.class);
@@ -341,4 +360,100 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
     }
+
+    public  void Save(String filePath){
+        try {
+            File f=new File(filePath);
+            f.createNewFile();
+            FileOutputStream outputStream=new FileOutputStream(f);
+            OutputStreamWriter writer=new OutputStreamWriter(outputStream);
+            writer.append(editText.getText().toString());
+            writer.close();
+            outputStream.close();
+
+        }catch (Exception e){
+
+        }
+
+    }
+    public void SaveAs(){
+        Intent intent1=new Intent(MainActivity.this,FileBrowser.class);
+        intent1.putExtra("text",editText.getText().toString());
+        startActivity(intent1);
+
+    }
+
+    public void editOption(int casecode){
+
+        switch (casecode){
+                case 1:
+                    if(editText.getText().toString().length()!=0){
+
+                        int start, end;
+                        start = editText.getSelectionStart();
+                        end = editText.getSelectionEnd();
+                        ExtractedString = editText.getText().toString().substring(start, end);
+                        myclip=ClipData.newPlainText("text",ExtractedString);
+                        clipboardManager.setPrimaryClip(myclip);
+
+                        Toast.makeText(getApplicationContext(), "Copied", Toast.LENGTH_SHORT).show();
+
+                    }else{
+
+                        Toast.makeText(getApplicationContext(), "Nothing to Copy", Toast.LENGTH_SHORT).show();
+                    }
+
+                    break;
+                case 2:
+                    if(editText.getText().toString().length()!=0){
+
+                        int start, end;
+                        String mainstring=editText.getText().toString();
+                        start = editText.getSelectionStart();
+                        end = editText.getSelectionEnd();
+                        ExtractedString = editText.getText().toString().substring(start, end);
+                        myclip=ClipData.newPlainText("text",ExtractedString);
+                        clipboardManager.setPrimaryClip(myclip);
+                        if (ExtractedString.equals("")){
+                            Toast.makeText(this, "Select text First", Toast.LENGTH_SHORT).show();
+                        }else {
+                        editText.setText(mainstring.replace(ExtractedString,""));
+                        try{
+                            editText.setSelection(start);
+                        }catch (Exception e){
+
+                        }
+
+                        }
+
+                    }else{
+
+                        Toast.makeText(getApplicationContext(), "Nothing to Cut", Toast.LENGTH_SHORT).show();
+                    }
+
+                    break;
+                case 3:
+
+                    ClipData clipData=clipboardManager.getPrimaryClip();
+                    ClipData.Item item=clipData.getItemAt(0);
+                    String text=item.getText().toString();
+                    int curser=editText.getSelectionStart();
+                    int length;
+                    String Appending,HoldingString;
+                    Appending=editText.getText().toString();
+                    length=Appending.length();
+                    HoldingString=Appending.substring(curser, length);
+                    Appending=Appending.replace(HoldingString,"");
+                    Appending=Appending+text+""+HoldingString;
+                    editText.setText(Appending);
+                    editText.setSelection(Appending.length());
+                    break;
+
+
+
+        }
+
+    }
+
+
 }

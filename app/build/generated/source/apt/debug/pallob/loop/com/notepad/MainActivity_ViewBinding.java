@@ -16,15 +16,15 @@ import java.lang.Override;
 public class MainActivity_ViewBinding implements Unbinder {
   private MainActivity target;
 
-  private View view2131165185;
+  private View view2131230721;
 
-  private View view2131165186;
+  private View view2131230722;
 
-  private View view2131165187;
+  private View view2131230723;
 
-  private View view2131165188;
+  private View view2131230724;
 
-  private View view2131165240;
+  private View view2131230791;
 
   @UiThread
   public MainActivity_ViewBinding(MainActivity target) {
@@ -38,7 +38,7 @@ public class MainActivity_ViewBinding implements Unbinder {
     View view;
     view = Utils.findRequiredView(source, R.id.B1, "field 'B1' and method 'onViewClicked'");
     target.B1 = Utils.castView(view, R.id.B1, "field 'B1'", Button.class);
-    view2131165185 = view;
+    view2131230721 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -47,7 +47,7 @@ public class MainActivity_ViewBinding implements Unbinder {
     });
     view = Utils.findRequiredView(source, R.id.B2, "field 'B2' and method 'onViewClicked'");
     target.B2 = Utils.castView(view, R.id.B2, "field 'B2'", Button.class);
-    view2131165186 = view;
+    view2131230722 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -56,7 +56,7 @@ public class MainActivity_ViewBinding implements Unbinder {
     });
     view = Utils.findRequiredView(source, R.id.B3, "field 'B3' and method 'onViewClicked'");
     target.B3 = Utils.castView(view, R.id.B3, "field 'B3'", Button.class);
-    view2131165187 = view;
+    view2131230723 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -65,7 +65,7 @@ public class MainActivity_ViewBinding implements Unbinder {
     });
     view = Utils.findRequiredView(source, R.id.B4, "field 'B4' and method 'onViewClicked'");
     target.B4 = Utils.castView(view, R.id.B4, "field 'B4'", Button.class);
-    view2131165188 = view;
+    view2131230724 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -75,7 +75,7 @@ public class MainActivity_ViewBinding implements Unbinder {
     target.linearLayout = Utils.findRequiredViewAsType(source, R.id.linearLayout, "field 'linearLayout'", LinearLayout.class);
     view = Utils.findRequiredView(source, R.id.editText, "field 'editText' and method 'onViewClicked'");
     target.editText = Utils.castView(view, R.id.editText, "field 'editText'", EditText.class);
-    view2131165240 = view;
+    view2131230791 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -98,15 +98,15 @@ public class MainActivity_ViewBinding implements Unbinder {
     target.linearLayout = null;
     target.editText = null;
 
-    view2131165185.setOnClickListener(null);
-    view2131165185 = null;
-    view2131165186.setOnClickListener(null);
-    view2131165186 = null;
-    view2131165187.setOnClickListener(null);
-    view2131165187 = null;
-    view2131165188.setOnClickListener(null);
-    view2131165188 = null;
-    view2131165240.setOnClickListener(null);
-    view2131165240 = null;
+    view2131230721.setOnClickListener(null);
+    view2131230721 = null;
+    view2131230722.setOnClickListener(null);
+    view2131230722 = null;
+    view2131230723.setOnClickListener(null);
+    view2131230723 = null;
+    view2131230724.setOnClickListener(null);
+    view2131230724 = null;
+    view2131230791.setOnClickListener(null);
+    view2131230791 = null;
   }
 }

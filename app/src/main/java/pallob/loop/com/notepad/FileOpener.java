@@ -5,10 +5,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.annotation.Nullable;
+import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
@@ -33,6 +35,8 @@ public class FileOpener extends Activity {
     Button filecancel;
     @BindView(R.id.fileback)
     Button fileback;
+    @BindView(R.id.dirshow)
+    TextView Directoryshow;
 
     String path, folder, mypath, FileName;
     ArrayList<File> fileobject;
@@ -43,6 +47,8 @@ public class FileOpener extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fileopener);
         ButterKnife.bind(this);
+
+        Directoryshow.setMovementMethod(new ScrollingMovementMethod());
         fileobject = new ArrayList<>();
         imgIcon = new ArrayList<>();
         imgIcon.add(0, R.drawable.folder);
@@ -51,7 +57,6 @@ public class FileOpener extends Activity {
         file = new File(path);
         fileobject.add(0, file);
         ListViewer(fileobject.get(0));
-
         fileback.setEnabled(false);
 
 
@@ -99,18 +104,14 @@ public class FileOpener extends Activity {
     public void ListViewer(File reciever) {
 
 
+        Directoryshow.setText(reciever.getAbsolutePath());
         final File files[] = reciever.listFiles();
         ArrayList<Integer> DirIcon = new ArrayList<>();
         final ArrayList<String> Directory = new ArrayList<>();
         final ArrayList<String> Directorypath = new ArrayList<>();
         final ArrayList<String> temdir = new ArrayList<>();
-        final ArrayList<String> tempfile = new ArrayList<>();
         final ArrayList<String> temdirpath = new ArrayList<>();
-        final ArrayList<String> tempfilepath = new ArrayList<>();
-
-        final ArrayList<String> tempfiledoc = new ArrayList<>();
         final ArrayList<String> tempfiletext = new ArrayList<>();
-        final ArrayList<String> tempfilepathdoc = new ArrayList<>();
         final ArrayList<String> tempfilepathtext = new ArrayList<>();
 
 
@@ -188,6 +189,10 @@ public class FileOpener extends Activity {
 
     }
 
-
-
+    @Override
+    public void onBackPressed() {
+        intent.putExtra("empty","");
+        setResult(2,intent);
+        finish();
+    }
 }

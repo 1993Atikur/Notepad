@@ -15,7 +15,7 @@ import java.lang.Override;
 public class ReadMode_ViewBinding implements Unbinder {
   private ReadMode target;
 
-  private View view2131165222;
+  private View view2131230760;
 
   @UiThread
   public ReadMode_ViewBinding(ReadMode target) {
@@ -30,7 +30,7 @@ public class ReadMode_ViewBinding implements Unbinder {
     target.textView = Utils.findRequiredViewAsType(source, R.id.textView, "field 'textView'", TextView.class);
     view = Utils.findRequiredView(source, R.id.button, "field 'button' and method 'onViewClicked'");
     target.button = Utils.castView(view, R.id.button, "field 'button'", Button.class);
-    view2131165222 = view;
+    view2131230760 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -49,7 +49,7 @@ public class ReadMode_ViewBinding implements Unbinder {
     target.textView = null;
     target.button = null;
 
-    view2131165222.setOnClickListener(null);
-    view2131165222 = null;
+    view2131230760.setOnClickListener(null);
+    view2131230760 = null;
   }
 }

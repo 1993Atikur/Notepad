@@ -18,15 +18,15 @@ import java.lang.Override;
 public class FileBrowser_ViewBinding implements Unbinder {
   private FileBrowser target;
 
-  private View view2131165250;
+  private View view2131230804;
 
-  private View view2131165247;
+  private View view2131230801;
 
-  private View view2131165252;
+  private View view2131230806;
 
-  private View view2131165248;
+  private View view2131230802;
 
-  private View view2131165287;
+  private View view2131230851;
 
   @UiThread
   public FileBrowser_ViewBinding(FileBrowser target) {
@@ -40,7 +40,7 @@ public class FileBrowser_ViewBinding implements Unbinder {
     View view;
     view = Utils.findRequiredView(source, R.id.filehome, "field 'filehome' and method 'onViewClicked'");
     target.filehome = Utils.castView(view, R.id.filehome, "field 'filehome'", Button.class);
-    view2131165250 = view;
+    view2131230804 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -49,7 +49,7 @@ public class FileBrowser_ViewBinding implements Unbinder {
     });
     view = Utils.findRequiredView(source, R.id.fileback, "field 'fileback' and method 'onViewClicked'");
     target.fileback = Utils.castView(view, R.id.fileback, "field 'fileback'", Button.class);
-    view2131165247 = view;
+    view2131230801 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -60,7 +60,7 @@ public class FileBrowser_ViewBinding implements Unbinder {
     target.filename = Utils.findRequiredViewAsType(source, R.id.filename, "field 'filename'", EditText.class);
     view = Utils.findRequiredView(source, R.id.filesave, "field 'filesave' and method 'onViewClicked'");
     target.filesave = Utils.castView(view, R.id.filesave, "field 'filesave'", Button.class);
-    view2131165252 = view;
+    view2131230806 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -69,7 +69,7 @@ public class FileBrowser_ViewBinding implements Unbinder {
     });
     view = Utils.findRequiredView(source, R.id.filecancel, "field 'filecancel' and method 'onViewClicked'");
     target.filecancel = Utils.castView(view, R.id.filecancel, "field 'filecancel'", Button.class);
-    view2131165248 = view;
+    view2131230802 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -78,7 +78,7 @@ public class FileBrowser_ViewBinding implements Unbinder {
     });
     view = Utils.findRequiredView(source, R.id.newfolder, "field 'newfolder' and method 'onViewClicked'");
     target.newfolder = Utils.castView(view, R.id.newfolder, "field 'newfolder'", Button.class);
-    view2131165287 = view;
+    view2131230851 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -108,15 +108,15 @@ public class FileBrowser_ViewBinding implements Unbinder {
     target.layoutprogress = null;
     target.spinner = null;
 
-    view2131165250.setOnClickListener(null);
-    view2131165250 = null;
-    view2131165247.setOnClickListener(null);
-    view2131165247 = null;
-    view2131165252.setOnClickListener(null);
-    view2131165252 = null;
-    view2131165248.setOnClickListener(null);
-    view2131165248 = null;
-    view2131165287.setOnClickListener(null);
-    view2131165287 = null;
+    view2131230804.setOnClickListener(null);
+    view2131230804 = null;
+    view2131230801.setOnClickListener(null);
+    view2131230801 = null;
+    view2131230806.setOnClickListener(null);
+    view2131230806 = null;
+    view2131230802.setOnClickListener(null);
+    view2131230802 = null;
+    view2131230851.setOnClickListener(null);
+    view2131230851 = null;
   }
 }
